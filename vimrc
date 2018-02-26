@@ -24,4 +24,5 @@ Plug 'vimwiki/vimwiki'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
+map <C-n> :NERDTreeToggle<CR>
 autocmd Filetype swift setlocal expandtab tabstop=4 shiftwidth=4
