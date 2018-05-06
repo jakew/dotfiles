@@ -3,6 +3,7 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/jakew/.oh-my-zsh
+export PATH=/Library/Developer/Toolchains/swift-4.1-DEVELOPMENT-SNAPSHOT-2018-02-26-a.xctoolchain/usr/bin:"${PATH}"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -92,3 +93,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Go LAng
+export DEVELOPMENT=$HOME/Development
+export GOPATH=$DEVELOPMENT/go
+export PATH=$PATH:$GOPATH/bin
