@@ -3,13 +3,13 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/jakew/.oh-my-zsh
+export PATH=/Library/Developer/Toolchains/swift-4.1-DEVELOPMENT-SNAPSHOT-2018-02-26-a.xctoolchain/usr/bin:"${PATH}"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
-export GOPATH=$HOME/Development/go
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
 # cause zsh load theme from this variable instead of
@@ -94,3 +94,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 gocd () { cd `go list -f '{{.Dir}}' $1` }
+
+# Go LAng
+export DEVELOPMENT=$HOME/Development
+export GOPATH=$DEVELOPMENT/go
+export PATH=$PATH:$GOPATH/bin
