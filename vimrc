@@ -1,3 +1,6 @@
+" Default Options that I like:
+set number
+
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
 
