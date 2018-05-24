@@ -93,6 +93,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+gocd () { cd `go list -f '{{.Dir}}' $1` }
 
 # Go LAng
 export DEVELOPMENT=$HOME/Development
