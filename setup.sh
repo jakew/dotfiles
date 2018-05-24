@@ -15,6 +15,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 brew install vim --with-override-system-vi
 ln -s ~/.dotfiles/vimrc ~/.vimrc
 
+# Install Grip for Markdown viewing
+brew install grip
+
 # Install VIM-Plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

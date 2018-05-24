@@ -21,6 +21,9 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Diary
 Plug 'vimwiki/vimwiki'
 
+" Markdown Server
+Plug 'JamshedVesuna/vim-markdown-preview'
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
