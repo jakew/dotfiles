@@ -1,5 +1,8 @@
 #! /bin/bash
 
+# Install fonts for iTerm
+cp ~/.dotfiles/fonts/* ~/Library/Fonts
+
 # Install Homebrew (Visit brew.sh)
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
@@ -11,8 +14,11 @@ ln -s ~/.dotfiles/zshrc ~/.zshrc
 # Install Oh-My-ZSH
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
+# Install Powerlevel9k
+git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+
 # Install VIM 8
-brew install vim --with-override-system-vi
+brew install vim --with-override-system-vi --with-python3
 ln -s ~/.dotfiles/vimrc ~/.vimrc
 
 # Install Grip for Markdown viewing

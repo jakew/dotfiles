@@ -4,6 +4,9 @@ set number
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
 
+" XDebug plugin
+Plug 'vim-vdebug/vdebug'
+
 " Declare the list of plugins.
 Plug 'keith/swift.vim'
 
@@ -15,7 +18,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 " TMUX Helpers
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'https://github.com/christoomey/vim-tmux-runner'
+Plug 'christoomey/vim-tmux-runner'
 Plug 'christoomey/vim-run-interactive'
 
 " File-System search
@@ -27,8 +30,16 @@ Plug 'vimwiki/vimwiki'
 " Markdown Server
 Plug 'JamshedVesuna/vim-markdown-preview'
 
+" Make tmux look the same
+Plug 'edkolev/tmuxline.vim'
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
 map <C-n> :NERDTreeToggle<CR>
 autocmd Filetype swift setlocal expandtab tabstop=4 shiftwidth=4
+
+" Plug 'joonty/vdebug', { 'branch': 'master' } 
+" PHP debug
+let g:vdebug_options={}
+let g:vdebug_options['path_maps'] = { '/var/www/eye': '/Users/jakew/Development/eye', '/var/www/Yii': '/Users/jakew/Development/yii/framework' } 
