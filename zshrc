@@ -94,6 +94,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Powerlevel9k
+source ~/.dotfiles/powerlevel9k
+
 # MySQL Alias
 alias sql='mysql -h 10.0.2.15 -uuser -p'\''Password1!'\'''
 

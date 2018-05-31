@@ -4,6 +4,9 @@ set number
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
 
+" Aurora theme
+Plug 'everard/vim-aurora'
+
 " XDebug plugin
 Plug 'vim-vdebug/vdebug'
 
@@ -38,6 +41,9 @@ call plug#end()
 
 map <C-n> :NERDTreeToggle<CR>
 autocmd Filetype swift setlocal expandtab tabstop=4 shiftwidth=4
+
+" Set the vim-airline theme
+let g:airline_theme='aurora'
 
 " Plug 'joonty/vdebug', { 'branch': 'master' } 
 " PHP debug

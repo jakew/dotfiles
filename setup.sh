@@ -5,6 +5,7 @@ cp ~/.dotfiles/fonts/* ~/Library/Fonts
 
 # Install Homebrew (Visit brew.sh)
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew update
 
 # Install the latest ZSH and set it as the default.
 brew install zsh
@@ -41,3 +42,7 @@ brew install the_silver_searcher
 brew install tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
+
+# Install Neofetch because I'm a nerd.
+brew install neofetch
+neofetch
