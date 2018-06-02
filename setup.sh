@@ -30,7 +30,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Install Plugins
-vim "+PlugInstall!" "+PlugUpdate!" "+wq"
+vim '+PlugInstall!' '+PlugUpdate!' '+qa!'
 
 # iTerm2 Preferences
 ln -s ~/.dotfiles/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
