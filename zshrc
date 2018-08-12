@@ -97,9 +97,6 @@ source $ZSH/oh-my-zsh.sh
 # Powerlevel9k
 source ~/.dotfiles/powerlevel9k
 
-# MySQL Alias
-alias sql='mysql -h 10.0.2.15 -uuser -p'\''Password1!'\'''
-
 # Custom vars
 export DEVELOPMENT=$HOME/Development
 export PATH=/Library/Developer/Toolchains/swift-4.1-DEVELOPMENT-SNAPSHOT-2018-02-26-a.xctoolchain/usr/bin:"${PATH}"
