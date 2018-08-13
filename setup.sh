@@ -25,6 +25,9 @@ ln -s ~/.dotfiles/vimrc ~/.vimrc
 # Install Grip for Markdown viewing
 brew install grip
 
+# Install Delve for Go Dev
+brew install delve
+
 # Install VIM-Plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

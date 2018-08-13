@@ -36,6 +36,12 @@ Plug 'JamshedVesuna/vim-markdown-preview'
 " Make tmux look the same
 Plug 'edkolev/tmuxline.vim'
 
+" Vim-Go
+Plug 'fatih/vim-go'
+
+" Vim-Delve (for go)
+Plug 'sebdah/vim-delve'
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -46,6 +52,3 @@ autocmd Filetype swift setlocal expandtab tabstop=4 shiftwidth=4
 let g:airline_theme='aurora'
 
 " Plug 'joonty/vdebug', { 'branch': 'master' } 
-" PHP debug
-let g:vdebug_options={}
-let g:vdebug_options['path_maps'] = { '/var/www/eye': '/Users/jakew/Development/eye', '/var/www/Yii': '/Users/jakew/Development/yii/framework' } 

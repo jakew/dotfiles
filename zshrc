@@ -1,8 +1,11 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# Powerlevel9k
+source ~/.dotfiles/powerlevel9k
+
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/jakew/.oh-my-zsh
+export ZSH=/Users/jake.winters\@ibm.com/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -94,20 +97,38 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Powerlevel9k
-source ~/.dotfiles/powerlevel9k
+# Go Lang
+export GOPATH=$DEVELOPMENT/go
+export PATH=$PATH:$GOPATH/bin
 
 # MySQL Alias
 alias sql='mysql -h 10.0.2.15 -uuser -p'\''Password1!'\'''
+alias gtcon="cd $GOPATH/src/q1git.canlab.ibm.com/qbert/conman"
+
+# Gradle
+export USER_HOME=$HOME
+export GRADLE_USER_HOME=$HOME/.gradle
 
 # Custom vars
 export DEVELOPMENT=$HOME/Development
 export PATH=/Library/Developer/Toolchains/swift-4.1-DEVELOPMENT-SNAPSHOT-2018-02-26-a.xctoolchain/usr/bin:"${PATH}"
+export CONPRO=$VAGDIR/Development/go/src/q1git.canlab.ibm.com/qbert/conman/provisioning 
 
-# Go LAng
-export GOPATH=$DEVELOPMENT/go
-export PATH=$PATH:$GOPATH/bin
 #
 # Go Lang CD func
 gocd () { cd `go list -f '{{.Dir}}' $1` }
 
+#
+# Vagrant by DIR
+vagdir () { (cd $VAGDIR && vagrant $@ ) }
+
+#
+# Continuous Testing
+ct () {
+    if ! [ -x "$(command -v fswatch)" ]; then
+        echo 'Error: You need to install fswatch using: brew install fswatch' >&2
+        exit 1
+    fi
+
+    fswatch -e ".*" -i "\\.go$" . | xargs -n1 -I{} sh -c 'clear && ginkgo'
+}
