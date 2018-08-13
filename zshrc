@@ -97,18 +97,17 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+#
 # Go Lang
 export GOPATH=$DEVELOPMENT/go
 export PATH=$PATH:$GOPATH/bin
 
-# MySQL Alias
-alias sql='mysql -h 10.0.2.15 -uuser -p'\''Password1!'\'''
-alias gtcon="cd $GOPATH/src/q1git.canlab.ibm.com/qbert/conman"
-
+#
 # Gradle
 export USER_HOME=$HOME
 export GRADLE_USER_HOME=$HOME/.gradle
 
+#
 # Custom vars
 export DEVELOPMENT=$HOME/Development
 export PATH=/Library/Developer/Toolchains/swift-4.1-DEVELOPMENT-SNAPSHOT-2018-02-26-a.xctoolchain/usr/bin:"${PATH}"
