@@ -5,7 +5,7 @@
 source ~/.dotfiles/powerlevel9k
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/jake.winters\@ibm.com/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -98,9 +98,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 #
-# Go Lang
-export GOPATH=$DEVELOPMENT/go
-export PATH=$PATH:$GOPATH/bin
+# Tmuxinator
+source ~/.bin/tmuxinator.zsh
 
 #
 # Gradle
@@ -111,7 +110,13 @@ export GRADLE_USER_HOME=$HOME/.gradle
 # Custom vars
 export DEVELOPMENT=$HOME/Development
 export PATH=/Library/Developer/Toolchains/swift-4.1-DEVELOPMENT-SNAPSHOT-2018-02-26-a.xctoolchain/usr/bin:"${PATH}"
-export CONPRO=$VAGDIR/Development/go/src/q1git.canlab.ibm.com/qbert/conman/provisioning 
+export CONPRO=$GOPATH/src/q1git.canlab.ibm.com/qbert/conman/provisioning 
+export EDITOR='vim'
+
+#
+# Go Lang
+export GOPATH=$DEVELOPMENT/go
+export PATH=$PATH:$GOPATH/bin
 
 #
 # Go Lang CD func
@@ -130,4 +135,13 @@ ct () {
     fi
 
     fswatch -e ".*" -i "\\.go$" . | xargs -n1 -I{} sh -c 'clear && ginkgo'
+}
+
+cgt () {
+    if ! [ -x "$(command -v fswatch)" ]; then
+        echo 'Error: You need to install fswatch using: brew install fswatch' >&2
+        exit 1
+    fi
+
+    fswatch -e ".*" -i "\\.go$" . | xargs -n1 -I{} sh -c 'clear && go test ${@}'
 }
