@@ -39,8 +39,9 @@ Plug 'edkolev/tmuxline.vim'
 " Vim-Go
 Plug 'fatih/vim-go'
 
-" Vim-Delve (for go)
-Plug 'sebdah/vim-delve'
+" Rainbow
+Plug 'luochen1990/rainbow'
+let g:rainbow_active = 1
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -52,3 +53,26 @@ autocmd Filetype swift setlocal expandtab tabstop=4 shiftwidth=4
 let g:airline_theme='aurora'
 
 " Plug 'joonty/vdebug', { 'branch': 'master' } 
+
+let wiki_1 = {}
+let wiki_1.path = '~/vimwiki/'
+
+let wiki_2 = {}
+let wiki_2.path = '~/scifi/'
+
+let g:vimwiki_list = [wiki_1, wiki_2]
+
+set spelllang=en
+set spellfile=$HOME/.dotfiles/vim/spell/en.utf-8.add
+
+if !exists("augo")
+	let augo = 1
+	augroup go
+	autocmd!
+		autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+		autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+		autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+	augroup END
+endif
+
+set timeoutlen=1000 ttimeoutlen=0

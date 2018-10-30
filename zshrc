@@ -98,6 +98,17 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 #
+# TMUX
+export EDITOR='vim'
+#source ~/.bin/tmuxinator.zsh
+
+#
+# Custom vars
+export DEVELOPMENT=$HOME/Development
+export PATH=/Library/Developer/Toolchains/swift-4.1-DEVELOPMENT-SNAPSHOT-2018-02-26-a.xctoolchain/usr/bin:"${PATH}"
+export VAGDIR=$HOME/Development/go/src/q1git.canlab.ibm.com/qbert/conman/provisioning 
+
+#
 # Go Lang
 export GOPATH=$DEVELOPMENT/go
 export PATH=$PATH:$GOPATH/bin
@@ -106,12 +117,6 @@ export PATH=$PATH:$GOPATH/bin
 # Gradle
 export USER_HOME=$HOME
 export GRADLE_USER_HOME=$HOME/.gradle
-
-#
-# Custom vars
-export DEVELOPMENT=$HOME/Development
-export PATH=/Library/Developer/Toolchains/swift-4.1-DEVELOPMENT-SNAPSHOT-2018-02-26-a.xctoolchain/usr/bin:"${PATH}"
-export CONPRO=$VAGDIR/Development/go/src/q1git.canlab.ibm.com/qbert/conman/provisioning 
 
 #
 # Go Lang CD func
