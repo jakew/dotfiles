@@ -1,3 +1,4 @@
+![My terminal setup running this dotfiles collection.](blob/master/screenshot.png "My terminal setup running this dotfiles collection.")
 # dotfiles
 This repository is used to track and maintain my current list of CLI applications and tools. 
 
