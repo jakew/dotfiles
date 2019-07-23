@@ -58,11 +58,28 @@ Plug 'fatih/vim-go'
 " Swift
 Plug 'keith/swift.vim'
 
+" Lua
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-lua-ftplugin'
+Plug 'vim-scripts/lua.vim'
+
+" Typescript
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/vim-js-pretty-template'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+
+" Javascript
+Plug 'pangloss/vim-javascript'
+
+" Angular
+Plug 'angular/angular-cli'
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
 map <C-n> :NERDTreeToggle<CR>
 autocmd Filetype swift setlocal expandtab tabstop=4 shiftwidth=4
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2
 
 " Set the vim-airline theme
 let g:airline_theme='aurora'

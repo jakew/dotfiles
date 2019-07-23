@@ -1,6 +1,12 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+#
+# Tmux Vars
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOCONNECT=true
+ZSH_TMUX_AUTOQUIT=false
+
 # Powerlevel9k
 source ~/.dotfiles/powerlevel9k
 
@@ -43,7 +49,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -63,7 +69,17 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  zsh_reload
   git
+  wd
+  extract
+  history
+  jsontools
+  lol
+  osx
+  sudo
+  tmuxinator
+  tmux
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -97,22 +113,42 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Vi Mode
+bindkey -v
+
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+export KEYTIMEOUT=1
+
+
+# If currently in vim :sh then exit, otherwise open vim.
+alias v='if [ -z "$VIM"  ] ; then vi .; else exit; fi'
+
+
+agr () { ag -0 -l "$1" | xargs -0 sed -ri.bak -e "s/$1/$2/g"}
+
 #
 # Tmuxinator
 source ~/.bin/tmuxinator.zsh
+tt () { if ! [ -z "$TMUX" ]; then mux start $1 --not-attached && tmux switch -t $1; else tmux attach -t $1 || mux start $1; fi }
 
-#
-# Gradle
-export USER_HOME=$HOME
-export GRADLE_USER_HOME=$HOME/.gradle
-
-#
 # Custom vars
 export DEVELOPMENT=$HOME/Development
 export PATH=/Library/Developer/Toolchains/swift-4.1-DEVELOPMENT-SNAPSHOT-2018-02-26-a.xctoolchain/usr/bin:"${PATH}"
-export CONPRO=$GOPATH/src/q1git.canlab.ibm.com/qbert/conman/provisioning 
 export EDITOR='vim'
 
+if [ -f $HOME/.localrc ]; then 
+    source $HOME/.localrc	
+fi
+
+#
 #
 # Go Lang
 export GOPATH=$DEVELOPMENT/go
@@ -123,25 +159,6 @@ export PATH=$PATH:$GOPATH/bin
 gocd () { cd `go list -f '{{.Dir}}' $1` }
 
 #
-# Vagrant by DIR
-vagdir () { (cd $VAGDIR && vagrant $@ ) }
+# Print the weather in Fredericton.
+fred () { curl wttr.in/Fredericton_NB }
 
-#
-# Continuous Testing
-ct () {
-    if ! [ -x "$(command -v fswatch)" ]; then
-        echo 'Error: You need to install fswatch using: brew install fswatch' >&2
-        exit 1
-    fi
-
-    fswatch -e ".*" -i "\\.go$" . | xargs -n1 -I{} sh -c 'clear && ginkgo'
-}
-
-cgt () {
-    if ! [ -x "$(command -v fswatch)" ]; then
-        echo 'Error: You need to install fswatch using: brew install fswatch' >&2
-        exit 1
-    fi
-
-    fswatch -e ".*" -i "\\.go$" . | xargs -n1 -I{} sh -c 'clear && go test ${@}'
-}
