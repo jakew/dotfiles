@@ -1,11 +1,12 @@
 #! /bin/bash
 
-# Install fonts for iTerm
-cp ~/.dotfiles/fonts/* ~/Library/Fonts
-
 # Install Homebrew (Visit brew.sh)
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew update
+
+# Install the Hyper terminal
+brew cask install hyper
+ln -s ~/.dotfiles/hyper.js ~/.hyper.js
 
 # Install the latest ZSH and set it as the default.
 brew install zsh
@@ -13,20 +14,18 @@ chsh -s /bin/zsh
 ln -s ~/.dotfiles/zshrc ~/.zshrc
 
 # Install Oh-My-ZSH
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# Install Powerlevel9k
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+# Install Powerlevel10k
+brew install romkatv/powerlevel10k/powerlevel10k
+ln -s ~/.dotfiles/p10k.zsh ~/.p10k.zsh
+
+# ZSH Highlighting
+brew install zsh-syntax-highlighting
 
 # Install VIM 8
-brew install vim --with-override-system-vi --with-python3
+brew install vim
 ln -s ~/.dotfiles/vimrc ~/.vimrc
-
-# Install Grip for Markdown viewing
-brew install grip
-
-# Install Delve for Go Dev
-brew install delve
 
 # Install VIM-Plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -35,8 +34,8 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 # Install Plugins
 vim '+PlugInstall!' '+PlugUpdate!' '+qa!'
 
-# iTerm2 Preferences
-ln -s ~/.dotfiles/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
+# Install CTags for better code navigation.
+brew install ctags
 
 # The Silver Searcher
 brew install the_silver_searcher

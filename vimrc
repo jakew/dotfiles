@@ -1,48 +1,68 @@
 " Default Options that I like:
 set number
+set encoding=UTF-8
+set spelllang=en
+set timeoutlen=1000 ttimeoutlen=0
+set nocompatible
+syntax enable
+filetype plugin on
+colorscheme elflord
 
+set path=**
+set wildmenu
+
+" Tweaks for browsing
+let g:netrw_banner=0        " disable annoying banner
+let g:netrw_browse_split=4  " open in prior window
+let g:netrw_altv=1          " open splits to the right
+let g:netrw_liststyle=3     " tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
+" Add :MakeTags command
+command! MakeTags !ctags -R .
+
+" ==============================================================================
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
+" ==============================================================================
 
+" Git Gutter
+Plug 'airblade/vim-gitgutter'
 
-" Markbar for better bookmarks
-Plug 'Yilin-Yang/vim-markbar'
-
-" XDebug plugin
-Plug 'vim-vdebug/vdebug'
-
-" Fugitive helps with git related stuff.
-Plug 'tpope/vim-fugitive' 
-
-" Better substitute
+" Better substitute and commenting
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-commentary'
 
-" NerdTree
+" Sensible defaults
+" Plug 'tpope/vim-sensible'
+
+" Automatic tabbing
+Plug 'tpope/vim-sleuth'
+
+" NerdTree & Better Dev Icons
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
+map <C-n> :NERDTreeToggle<CR>
+
 
 " File-System search
 Plug 'ctrlpvim/ctrlp.vim'
 
-" Diary
-Plug 'vimwiki/vimwiki'
-
-" Markdown Server
-Plug 'JamshedVesuna/vim-markdown-preview'
-
-
-" Themes and Graphics
-" Aurora theme
-Plug 'everard/vim-aurora'
-Plug 'vim-airline/vim-airline' 
+" Airline & Theme
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled=1
+let g:airline_theme='bubblegum'
+
 
 " Rainbow
 Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1
 
-
 " Tmux Related
-" TMUX Helpers
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-tmux-runner'
 Plug 'christoomey/vim-run-interactive'
@@ -50,61 +70,14 @@ Plug 'christoomey/vim-run-interactive'
 " Make tmux look the same
 Plug 'edkolev/tmuxline.vim'
 
-
-" Language Specific
-" Vim-Go
-Plug 'fatih/vim-go'
-
-" Swift
-Plug 'keith/swift.vim'
-
-" Lua
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-lua-ftplugin'
-Plug 'vim-scripts/lua.vim'
-
-" Typescript
-Plug 'leafgarland/typescript-vim'
-Plug 'Quramy/vim-js-pretty-template'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-
-" Javascript
-Plug 'pangloss/vim-javascript'
-
-" Angular
-Plug 'angular/angular-cli'
-
+" load local plugins
+let $local_vimrc = $HOME . "/.local.vimrc"
+if filereadable($local_vimrc)
+    source $local_vimrc
+endif
+    
+" ==============================================================================
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
+" ==============================================================================
 
-map <C-n> :NERDTreeToggle<CR>
-autocmd Filetype swift setlocal expandtab tabstop=4 shiftwidth=4
-autocmd FileType javascript setlocal ts=2 sts=2 sw=2
-
-" Set the vim-airline theme
-let g:airline_theme='aurora'
-
-" Plug 'joonty/vdebug', { 'branch': 'master' } 
-
-let wiki_1 = {}
-let wiki_1.path = '~/vimwiki/'
-
-let wiki_2 = {}
-let wiki_2.path = '~/scifi/'
-
-let g:vimwiki_list = [wiki_1, wiki_2]
-
-set spelllang=en
-set spellfile=$HOME/.dotfiles/vim/spell/en.utf-8.add
-
-if !exists("augo")
-	let augo = 1
-	augroup go
-	autocmd!
-		autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-		autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-		autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-	augroup END
-endif
-
-set timeoutlen=1000 ttimeoutlen=0
