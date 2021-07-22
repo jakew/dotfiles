@@ -89,7 +89,6 @@ plugins=(
   sudo
   tmuxinator
   tmux
-  pyenv
   zsh-completions
 )
 
@@ -131,9 +130,9 @@ source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 # Vi Mode
 bindkey -v
 
-zle -N zle-line-init
-zle -N zle-keymap-select
-export KEYTIMEOUT=1
+# zle -N zle-line-init
+# zle -N zle-keymap-select
+# export KEYTIMEOUT=1
 
 
 # Better History Navigation
@@ -144,23 +143,24 @@ bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 
-# Tmuxinator auto-completions
-# source ~/.bin/tmuxinator.zsh
-tt () { if ! [ -z "$TMUX" ]; then tmuxinator start $1 --not-attached && tmux switch -t $1; else tmux attach -t $1 || tmuxinator start $1; fi }
-
-
 # Custom Vars
 export DEVELOPMENT=$HOME/Development
 export EDITOR='vim'
 
+# Read dotfile helpers
+for file in ~/.dotfiles/helpers.d/*; do
+  source $file; 
+done
+
+
 # Load a .localrc if it exists. This is to add computer specific stuff in.
 [[ ! -f ~/.localrc  ]] || source ~/.localrc
 
-
-
-
-
+export PATH=$DEVELOPMENT/Tools:$PATH
 
 # This must be last!
 # Add in ZSH Highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.dotfiles/p10k.zsh.
+[[ ! -f ~/.dotfiles/p10k.zsh ]] || source ~/.dotfiles/p10k.zsh

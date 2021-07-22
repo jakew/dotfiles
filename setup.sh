@@ -1,50 +1,28 @@
 #! /bin/bash
 
-# Install Homebrew (Visit brew.sh)
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew update
+# End the script on first failure.
+set -e
 
-# Install the Hyper terminal
-brew cask install hyper
-ln -s ~/.dotfiles/hyper.js ~/.hyper.js
+# Setup assumes the git repostiory is located at ~/.dotfiles
 
-# Install the latest ZSH and set it as the default.
-brew install zsh
-chsh -s /bin/zsh
-ln -s ~/.dotfiles/zshrc ~/.zshrc
+# Brew is the macOS package manager.
+# Required for the setup files to use brew.
+if ! type brew > /dev/null; then
+    # Install Homebrew (Visit brew.sh)
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# Install Oh-My-ZSH
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# Install Powerlevel10k
-brew install romkatv/powerlevel10k/powerlevel10k
-ln -s ~/.dotfiles/p10k.zsh ~/.p10k.zsh
+    # Tip: use `brew list python@3.9 &>/dev/null || brew install python@3.9;` to ensure the package is only installed once.
+fi
 
-# ZSH Highlighting
-brew install zsh-syntax-highlighting
+source ~/.dotfiles/setup-fns.zsh
 
-# Install VIM 8
-brew install vim
-ln -s ~/.dotfiles/vimrc ~/.vimrc
+# Update brew.
+brew update || exit 1
 
-# Install VIM-Plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# Read setup files
+for file in ~/.dotfiles/setup.d/*; do
+  source $file; 
+done
 
-# Install Plugins
-vim '+PlugInstall!' '+PlugUpdate!' '+qa!'
-
-# Install CTags for better code navigation.
-brew install ctags
-
-# The Silver Searcher
-brew install the_silver_searcher
-
-# Terminal Multiplex
-brew install tmux
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
-
-# Install Neofetch because I'm a nerd.
-brew install neofetch
 neofetch
