@@ -1,8 +1,5 @@
 #! /bin/bash 
 
-# Tmuxinator auto-completions
-source ~/.bin/tmuxinator.zsh
-
 # tt either attaches to the current session if it exists, or creates one.
 tt () { 
   if ! [ -z "$TMUX" ]; then 

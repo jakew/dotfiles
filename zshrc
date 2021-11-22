@@ -11,7 +11,7 @@ fi
 source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/jake.winters@ibm.com/.oh-my-zsh"
+export ZSH="${HOME}/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -36,7 +36,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+# DISABLE_UPDATE_PROMPT="tru`"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -78,19 +78,22 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  zsh_reload
-  git
+  ag
+  alias-finder
+  aliases
+  dash
   wd
   extract
   history
   jsontools
-  lol
-  osx
+  macos
   sudo
   tmuxinator
   tmux
   zsh-completions
 )
+
+alias src='omz reload'
 
 source $ZSH/oh-my-zsh.sh
 
@@ -153,14 +156,13 @@ for file in ~/.dotfiles/helpers.d/*; do
 done
 
 
+# This gets rid of a random %
+unsetopt PROMPT_SP
+
 # Load a .localrc if it exists. This is to add computer specific stuff in.
 [[ ! -f ~/.localrc  ]] || source ~/.localrc
 
 export PATH=$DEVELOPMENT/Tools:$PATH
 
-# This must be last!
-# Add in ZSH Highlighting
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# To customize prompt, run `p10k configure` or edit ~/.dotfiles/p10k.zsh.
-[[ ! -f ~/.dotfiles/p10k.zsh ]] || source ~/.dotfiles/p10k.zsh
+POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+export PATH="/usr/local/opt/curl/bin:$PATH"

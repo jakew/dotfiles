@@ -1,7 +1,6 @@
-#! /bin/bash
-
 # End the script on first failure.
 set -e
+set -x
 
 # Setup assumes the git repostiory is located at ~/.dotfiles
 
