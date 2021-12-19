@@ -1,8 +1,10 @@
-# dotfiles is the list of ifles that need to be 
+# dotfiles is the list of files that need to be symlinked
 dotfiles=(
 tmux.conf
 zshrc
 vimrc
+hyper.js
+p10k.zsh
 )
 
 echo "Symlinking dotfiles"

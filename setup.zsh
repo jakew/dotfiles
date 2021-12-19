@@ -14,10 +14,11 @@ if ! type brew > /dev/null; then
     # Tip: use `brew list python@3.9 &>/dev/null || brew install python@3.9;` to ensure the package is only installed once.
 fi
 
-source ~/.dotfiles/setup-fns.zsh
-
 # Update brew.
 brew update || exit 1
+
+# Install from Brewfile
+brew bundle 
 
 # Read setup files
 for file in ~/.dotfiles/setup.d/*; do
